@@ -19,6 +19,16 @@ describe Application do
   # class so our tests work.
   let(:app) { Application.new }
 
+  context "homepage" do
+    it "shows home page with links" do
+      response = get('/')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Music Library - Run by Duck Power</h1>')
+      expect(response.body).to include('<a href="/albums">List of albums</a>')
+      expect(response.body).to include('<a href="/artists">List of artists</a>')
+    end
+  end
+
   context "GET /albums" do
     it "gets all albums and displays in html" do
       response = get('/albums')

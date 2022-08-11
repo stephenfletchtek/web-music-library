@@ -1,4 +1,3 @@
-# file: app.rb
 require 'sinatra'
 require "sinatra/reloader"
 require_relative 'lib/database_connection'
@@ -12,6 +11,10 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
     also_reload 'lib/album_repository'
     also_reload 'lib/artist_repository'
+  end
+
+  get '/' do
+    erb(:home)
   end
 
   get '/albums' do
